@@ -1,4 +1,4 @@
-import { Link, useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import CustomButton from "../../components/CustomButton";
 import { useAppContext } from "../../context/AppContext";
@@ -16,6 +16,10 @@ export default function About() {
     router.replace("/home");
   };
 
+  const onCancel = () => {
+    router.back();
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
@@ -23,9 +27,7 @@ export default function About() {
       </Text>
       <TextInput style={styles.input} value={value} onChangeText={setValue} />
       <View style={styles.buttonWrapper}>
-        <Link href="/home" asChild>
-          <CustomButton label="Cancel" type="cancel" />
-        </Link>
+        <CustomButton label="Cancel" type="cancel" onPress={onCancel} />
         <CustomButton label="Save" onPress={onSave} disabled={isDisabled} />
       </View>
     </View>
